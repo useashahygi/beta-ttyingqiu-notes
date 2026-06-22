@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天天盈球 · 信息聚合与站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f1f3f5;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e1e2f;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* hero 卡片式主视觉 */
+        .hero-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e9ecef;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 1 1 300px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.2rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            color: #141c2b;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-text .sub {
+            font-size: 1.05rem;
+            color: #3c4a5b;
+            max-width: 480px;
+        }
+
+        .hero-visual {
+            flex: 0 0 120px;
+            height: 120px;
+            background: #dee2e6;
+            border-radius: 60px 60px 60px 8px;
+            background-image: radial-gradient(circle at 30% 30%, #cdd5de 0%, #b0bbc7 100%);
+            box-shadow: inset 0 -2px 4px rgba(0,0,0,0.02);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #2a3748;
+            font-weight: 450;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-left: 1.5rem;
+        }
+
+        /* 通用卡片 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eef0f2;
+            transition: box-shadow 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 520;
+            margin-bottom: 1rem;
+            color: #1f2a3a;
+            border-left: 4px solid #b0c4d9;
+            padding-left: 0.75rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #2d3a4b;
+            margin-bottom: 0.6rem;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 0.4rem;
+        }
+
+        .card li {
+            font-size: 0.92rem;
+            padding: 0.25rem 0;
+            color: #2d3a4b;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .card li::before {
+            content: "·";
+            font-weight: 700;
+            margin-right: 0.5rem;
+            color: #7c8b9f;
+        }
+
+        /* 链接段落 — 纯自然嵌入 */
+        .link-paragraph {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2rem 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eef0f2;
+            margin-bottom: 2rem;
+        }
+
+        .link-paragraph p {
+            font-size: 1rem;
+            color: #1e2a38;
+            margin-bottom: 0.9rem;
+        }
+
+        .link-paragraph a {
+            color: #1f5090;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #b7c9de;
+            transition: border-color 0.1s;
+        }
+
+        .link-paragraph a:hover {
+            border-bottom-color: #1f5090;
+        }
+
+        /* 折叠区 — FAQ 摘要 */
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eef0f2;
+            margin-bottom: 2rem;
+        }
+
+        .faq-mini h4 {
+            font-size: 1.15rem;
+            font-weight: 520;
+            margin-bottom: 0.75rem;
+            color: #1a2535;
+        }
+
+        .faq-item {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.7rem;
+        }
+
+        .faq-question {
+            font-weight: 500;
+            font-size: 0.96rem;
+            color: #1f2a3a;
+        }
+
+        .faq-answer {
+            font-size: 0.9rem;
+            color: #3e4d5e;
+            margin-top: 0.15rem;
+            padding-left: 0.9rem;
+            border-left: 2px solid #d7dee6;
+        }
+
+        .footnote {
+            font-size: 0.85rem;
+            color: #5d6f82;
+            border-top: 1px solid #e8ebef;
+            margin-top: 1.2rem;
+            padding-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.75rem;
+            }
+            .hero-card {
+                padding: 1.8rem 1.2rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .hero-visual {
+                margin-left: 0;
+                margin-top: 1.2rem;
+                width: 100%;
+                height: 80px;
+                border-radius: 40px;
+            }
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+            .card {
+                padding: 1.4rem 1.2rem;
+            }
+            .link-paragraph {
+                padding: 1.5rem 1.2rem;
+            }
+            .faq-mini {
+                padding: 1.4rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-text h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- hero 主视觉卡片 -->
+    <div class="hero-card">
+        <div class="hero-text">
+            <h1>天天盈球 · 信息聚合面板</h1>
+            <div class="sub">围绕站点定位、功能分区与可信说明的内容卡片，帮助新用户快速了解服务轮廓。</div>
+        </div>
+        <div class="hero-visual">◉ 聚合</div>
+    </div>
+
+    <!-- 用途卡片 / 站点介绍 -->
+    <div class="card-grid">
+        <div class="card">
+            <h3>站点说明</h3>
+            <p><strong>天天盈球</strong> 是一个围绕体育数据与赛事信息整合的在线平台。其内容侧重赛事动态、数据参考以及社区兴趣讨论，不提供任何形式的博彩或投机引导。</p>
+            <p>平台定位为信息聚合与交流场景，所有公开数据均来自合规渠道。用户在使用时应当基于自身判断理解信息价值。</p>
+        </div>
+        <div class="card">
+            <h3>用途场景</h3>
+            <ul>
+                <li>浏览赛事日程与实时比分更新</li>
+                <li>查阅历史数据与统计摘要</li>
+                <li>参与话题讨论与兴趣小组</li>
+                <li>关注特定球队或联赛动态</li>
+            </ul>
+            <p style="margin-top:0.8rem;">以上场景均基于信息展示与用户自主选择，不构成任何建议或预测。</p>
+        </div>
+        <div class="card">
+            <h3>适合人群</h3>
+            <ul>
+                <li>对体育赛事数据有查阅需求的爱好者</li>
+                <li>希望了解比赛背景的普通观众</li>
+                <li>关注体育社区讨论的轻度用户</li>
+                <li>研究运动统计规律的学习型读者</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 自然链接段落：可信说明与站点指向 -->
+    <div class="link-paragraph">
+        <p>对于希望深入了解信息聚合逻辑的用户，可以直接浏览 <a href="https://beta-ttyingqiu.com">天天盈球</a> 的界面布局与数据分类。站点本身不设立场，所有内容均以客观事实和公开数据为基础，用户可根据自身关注点自由探索。</p>
+        <p>信息页面采用模块化设计，每个板块都有清晰的标题与数据来源备注。例如赛事回顾板块会标明数据更新时间和参考源，方便用户核对。这种设计思路有助于降低信息误读，让访问者获得更可靠的浏览体验。</p>
+        <p>从可信说明的角度看，平台不存储用户敏感信息，不追踪个人偏好用于商业推送，所有交互功能均围绕公开内容展开。如果你希望查看具体的页面结构，可以前往 <a href="https://beta-ttyingqiu.com">天天盈球</a> 了解更多细节。</p>
+    </div>
+
+    <!-- FAQ 摘要卡片 -->
+    <div class="faq-mini">
+        <h4>常见疑问摘要</h4>
+        <div class="faq-item">
+            <span class="faq-question">站点是否需要注册才能浏览？</span>
+            <span class="faq-answer">大部分公开信息（如赛事列表、数据摘要）可直接查看，部分社区互动功能可能需要注册账号。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-question">数据更新频率如何？</span>
+            <span class="faq-answer">赛程与实时比分在比赛日会持续刷新，历史数据按赛季归档，每日固定时段同步。</span>
+        </div>
+        <div class="faq-item">
+            <span class="faq-question">是否提供分析工具或预测？</span>
+            <span class="faq-answer">平台仅展示原始数据和统计图表，不提供任何预测、推荐或分析结论，用户自行解读。</span>
+        </div>
+        <div class="footnote">
+            <span>以上内容仅供说明参考</span>
+            <span>信息版本 · 2025</span>
+        </div>
+    </div>
+
+    <!-- 极简站点信息 -->
+    <div style="text-align: center; font-size: 0.8rem; color: #7f8f9f; padding: 1.5rem 0 0.5rem; border-top: 1px solid #dfe3e8; margin-top: 0.5rem;">
+        <span>基于公开信息整理的站点介绍 · 内容保持中立</span>
+    </div>
+</div>
+</body>
+</html>
